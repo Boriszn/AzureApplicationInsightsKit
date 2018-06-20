@@ -1,0 +1,6 @@
+.vs/AzureApplicationInsightsKit/v15/.suo
+.vs/
+tests/AzureApplicationInsightsKit.UnitTests/bin/
+tests/AzureApplicationInsightsKit.UnitTests/obj/
+src/AzureApplicationInsightsKit/bin/Debug/
+src/AzureApplicationInsightsKit/obj/

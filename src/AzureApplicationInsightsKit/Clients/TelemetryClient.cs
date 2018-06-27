@@ -1,6 +1,8 @@
 ﻿using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using AzureApplicationInsightsKit.Builders;
+using AzureApplicationInsightsKit.Models;
 
 namespace AzureApplicationInsightsKit.Clients
 {
@@ -11,7 +13,12 @@ namespace AzureApplicationInsightsKit.Clients
     {
         private const string ApiKeyHeader = "x-api-key";
         private const string JsonMediaType = "application/json";
+        private readonly BaseUrlBuilder baseUrlBuilder;
 
+        public TelemetryClient()
+        {
+            baseUrlBuilder = new BaseUrlBuilder();
+        }
         /// <summary>
         /// Gets the telemetry.
         /// </summary>
@@ -29,6 +36,54 @@ namespace AzureApplicationInsightsKit.Clients
 
                 return response.IsSuccessStatusCode ? response.Content.ReadAsStringAsync().Result : response.ReasonPhrase;
             }
+        }
+
+        /// <summary>
+        /// Gets the json.
+        /// </summary>
+        /// <param name="query">The query.</param>
+        /// <param name="appId">The application identifier.</param>
+        /// <param name="apiKey">The API key.</param>
+        /// <returns></returns>
+        public async Task<string> GetJson(string query, string appId, string apiKey)
+        {
+            string url = baseUrlBuilder.With(appId, apiKey, query).Build();
+
+            return await GetTelemetry(url, apiKey);
+        }
+
+        /// <summary>
+        /// Gets the metric.
+        /// TODO: create generic method to code duplication
+        /// </summary>
+        /// <param name="query">The query.</param>
+        /// <param name="appId">The application identifier.</param>
+        /// <param name="apiKey">The API key.</param>
+        /// <returns></returns>
+        public async Task<Metric> GetMetric(string query, string appId, string apiKey)
+        {
+            string json = await new TelemetryClient().GetJson(query, appId, apiKey);
+
+            Utils.ValidatateResponseString(json);
+
+            return Metric.FromJson(json);
+        }
+
+        /// <summary>
+        /// Gets the by query.
+        /// TODO: create generic method to code duplication
+        /// </summary>
+        /// <param name="query">The query.</param>
+        /// <param name="appId">The application identifier.</param>
+        /// <param name="apiKey">The API key.</param>
+        /// <returns></returns>
+        public async Task<Query> GetByQuery(string query, string appId, string apiKey)
+        {
+            string json = await new TelemetryClient().GetJson(query, appId, apiKey);
+
+            Utils.ValidatateResponseString(json);
+
+            return Query.FromJson(json);
         }
     }
 }

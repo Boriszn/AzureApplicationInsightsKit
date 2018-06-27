@@ -11,12 +11,20 @@ namespace AzureApplicationInsightsKit.Clients
     public class QueryClient : IQueryClient
     {
         private string timespan;
-        private string query;
+        private string appInsightsQuery;
 
         private readonly string appId;
         private readonly string apiKey;
 
         private readonly BaseUrlBuilder baseUrlBuilder;
+
+        /// <summary>
+        /// Gets the URL with query.
+        /// </summary>
+        /// <value>
+        /// The URL with query.
+        /// </value>
+        private string UrlWithQuery => $"query?{timespan}&query={appInsightsQuery}";
 
         /// <summary>
         /// Initializes a new instance of the <see cref="QueryClient"/> class.
@@ -41,40 +49,15 @@ namespace AzureApplicationInsightsKit.Clients
         }
 
         /// <summary>
-        /// With the query.
+        /// Gets the by query.
         /// </summary>
-        /// <param name="newQuery">The new street.</param>
-        /// <returns>Metrics Builder</returns>
-        public QueryClient WithQuery(string newQuery)
-        {
-            this.query = newQuery;
-            return this;
-        }
-
-        /// <summary>
-        /// Gets the json.
-        /// </summary>
+        /// <param name="query">The query.</param>
         /// <returns></returns>
-        public async Task<string> GetJson()
+        public async Task<Query> GetByQuery(string query)
         {
-            string queryUrl = $"query?{timespan}&query={query}";
+            this.appInsightsQuery = query;
 
-            string url = baseUrlBuilder.With(appId, apiKey, queryUrl).Build();
-
-            return await TelemetryClient.GetTelemetry(url, apiKey);
-        }
-
-        /// <summary>
-        /// Gets this instance.
-        /// </summary>
-        /// <returns></returns>
-        public async Task<Query> Get()
-        {
-            string json = await GetJson();
-
-            Utils.ValidatateResponseString(json);
-
-            return Query.FromJson(json);
+            return await new TelemetryClient().GetByQuery(UrlWithQuery, appId, apiKey);
         }
     }
 }

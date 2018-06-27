@@ -4,6 +4,9 @@ using TimeSpan = AzureApplicationInsightsKit.Models.TimeSpan;
 
 namespace AzureApplicationInsightsKit.Clients
 {
+    /// <summary>
+    /// Metric client interface
+    /// </summary>
     public interface IMetricClient
     {
         /// <summary>
@@ -19,15 +22,9 @@ namespace AzureApplicationInsightsKit.Clients
         MetricClient WithTimeSpan(TimeSpan timeSpan);
 
         /// <summary>
-        /// Gets the json.
+        /// Gets the request duration metric.
         /// </summary>
         /// <returns></returns>
-        Task<string> GetJson();
-
-        /// <summary>
-        /// Gets this instance.
-        /// </summary>
-        /// <returns></returns>
-        Task<Metric> Get();
+        Task<Metric> GetRequestDurationMetric();
     }
 }

@@ -11,16 +11,12 @@ namespace AzureApplicationInsightsKit.UnitTests
         public async void GetByQuery_WithLastOneDayTimeSpan_RetrunEvent()
         {
             // Arrange 
-            const string AppId = "";
-            const string ApiKey = "";
-
             string query = "requests\r\n| where timestamp >= ago(24h)\r\n| count";
 
             // Act
-            Query queryData = await new QueryClient(AppId, ApiKey)
+            Query queryData = await new QueryClient(Constants.AppId, Constants.ApiKey)
                                 .WithTimespan(TimeSpan.Last1Day)
-                                .WithQuery(query)
-                                .Get();
+                                .GetByQuery(query);
 
             // Assert
             queryData.Should().NotBeNull();

@@ -12,22 +12,10 @@ namespace AzureApplicationInsightsKit.Clients
         QueryClient WithTimespan(TimeSpan timeSpan);
 
         /// <summary>
-        /// With the query.
+        /// Gets the by query.
         /// </summary>
-        /// <param name="newQuery">The new street.</param>
-        /// <returns>Metrics Builder</returns>
-        QueryClient WithQuery(string newQuery);
-
-        /// <summary>
-        /// Gets the json.
-        /// </summary>
+        /// <param name="query">The query.</param>
         /// <returns></returns>
-        Task<string> GetJson();
-
-        /// <summary>
-        /// Gets this instance.
-        /// </summary>
-        /// <returns></returns>
-        Task<Query> Get();
+        Task<Query> GetByQuery(string query);
     }
 }

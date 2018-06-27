@@ -1,5 +1,4 @@
 using System.Threading.Tasks;
-using AzureApplicationInsightsKit.Builders;
 using AzureApplicationInsightsKit.Models;
 
 namespace AzureApplicationInsightsKit.Clients
@@ -12,15 +11,28 @@ namespace AzureApplicationInsightsKit.Clients
         private string metric;
         private string timespan;
 
-        private readonly BaseUrlBuilder baseUrlBuilder;
         private readonly string appId;
         private readonly string apiKey;
 
+        private const string RequestDuration = "requests/duration";
+
+        /// <summary>
+        /// Gets the query.
+        /// </summary>
+        /// <value>
+        /// The query.
+        /// </value>
+        private string Query => $"metrics/{metric}?timespan={timespan}";
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MetricClient"/> class.
+        /// </summary>
+        /// <param name="appId">The application identifier.</param>
+        /// <param name="apiKey">The API key.</param>
         public MetricClient(string appId, string apiKey)
         {
             this.appId = appId;
             this.apiKey = apiKey;
-            baseUrlBuilder = new BaseUrlBuilder();
         }
 
         /// <summary>
@@ -45,29 +57,14 @@ namespace AzureApplicationInsightsKit.Clients
         }
 
         /// <summary>
-        /// Gets the json.
+        /// Gets the request duration metric.
         /// </summary>
         /// <returns></returns>
-        public async Task<string> GetJson()
+        public async Task<Metric> GetRequestDurationMetric()
         {
-            string query = $"metrics/{metric}?timespan={timespan}";
+            this.metric = RequestDuration;
 
-            string url = baseUrlBuilder.With(appId, apiKey, query).Build();
-
-            return await TelemetryClient.GetTelemetry(url, apiKey);
-        }
-
-        /// <summary>
-        /// Gets this instance.
-        /// </summary>
-        /// <returns></returns>
-        public async Task<Metric> Get()
-        {
-            string json = await GetJson();
-
-            Utils.ValidatateResponseString(json);
-
-            return Metric.FromJson(json);
+            return await new TelemetryClient().GetMetric(Query, appId, apiKey);
         }
     }
 }

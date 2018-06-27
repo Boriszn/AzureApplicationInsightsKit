@@ -1,13 +1,13 @@
 # ![App Insights Icon](https://raw.githubusercontent.com/Boriszn/AzureApplicationInsightsKit/develop/assets/img/application-insights-logo.png "App Insights")  Azure Application Insights Kit
 
-Library allows query and retrieve Metrics, Events data from Azure Application Insights.
+Library provides logic to retrieve and query Metrics, Events data from Azure Application Insights.
 
 ## Installation
 
-0. To enable Azure App Insights API support follow the [instructions Here.](https://dev.applicationinsights.io/quickstart)
-1. Clone repository
-2. Run UnitTests.
-3. Build / Run.
+1. To enable Azure App Insights API support for your Azure resource follow the [documentation Here.](https://dev.applicationinsights.io/quickstart)
+2. Clone repository
+3. Run UnitTests / Integration tests
+4. Build / Run.
 
 ## Contributing
 
@@ -19,8 +19,9 @@ Library allows query and retrieve Metrics, Events data from Azure Application In
 
 ## Tools and Links
 
- https://app.quicktype.io
- https://dev.applicationinsights.io/quickstart
+- [Model generator app.quicktype.io](https://app.quicktype.io)
+- [Azure Application insights quickstart](https://dev.applicationinsights.io/quickstart)
+ 
 
 ## History
 

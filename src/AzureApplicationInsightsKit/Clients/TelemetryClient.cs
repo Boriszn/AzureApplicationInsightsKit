@@ -19,6 +19,7 @@ namespace AzureApplicationInsightsKit.Clients
         {
             baseUrlBuilder = new BaseUrlBuilder();
         }
+
         /// <summary>
         /// Gets the telemetry.
         /// </summary>

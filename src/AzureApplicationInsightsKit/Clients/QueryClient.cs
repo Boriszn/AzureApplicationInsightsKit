@@ -16,8 +16,6 @@ namespace AzureApplicationInsightsKit.Clients
         private readonly string appId;
         private readonly string apiKey;
 
-        private readonly BaseUrlBuilder baseUrlBuilder;
-
         /// <summary>
         /// Gets the URL with query.
         /// </summary>
@@ -35,7 +33,6 @@ namespace AzureApplicationInsightsKit.Clients
         {
             this.appId = appId;
             this.apiKey = apiKey;
-            baseUrlBuilder = new BaseUrlBuilder();
         }
 
         /// <summary>

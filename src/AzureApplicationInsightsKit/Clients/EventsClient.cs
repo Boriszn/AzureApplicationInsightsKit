@@ -15,7 +15,6 @@ namespace AzureApplicationInsightsKit.Clients
         private string timespan;
         private string top;
 
-        private readonly BaseUrlBuilder baseUrlBuilder;
         private readonly string appId;
         private readonly string apiKey;
         
@@ -31,7 +30,6 @@ namespace AzureApplicationInsightsKit.Clients
         {
             this.appId = appId;
             this.apiKey = apiKey;
-            baseUrlBuilder = new BaseUrlBuilder();
 
             WithTimeSpan(TimeSpan.Last1Day);
         }
@@ -69,45 +67,40 @@ namespace AzureApplicationInsightsKit.Clients
         /// <summary>
         /// Withes the top.
         /// </summary>
-        /// <param name="top">The top.</param>
+        /// <param name="selectTop">The Top numbers off selected items.</param>
         /// <returns></returns>
-        public EventsClient WithTop(int top)
+        public EventsClient WithTop(int selectTop)
         {
-            this.top = $"$top={top}";
+            this.top = $"$top={selectTop}";
             return this;
-        }
-
-        /// <summary>
-        /// Gets the json.
-        /// </summary>
-        /// <returns></returns>
-        public async Task<string> GetJson()
-        {
-            var queryBuilder = new StringBuilder();
-
-            queryBuilder.Append($"{eventUrl}?{timespan}");
-
-            if (!string.IsNullOrEmpty(top))
-            {
-                queryBuilder.Append($"&{top}");
-            }
-
-            return await TelemetryClient.GetTelemetry(
-                baseUrlBuilder.With(appId, apiKey, queryBuilder.ToString()).Build(),
-                apiKey);
         }
 
         /// <summary>
         /// Gets this instance.
         /// </summary>
         /// <returns></returns>
-        public async Task<Event> Get()
+        public async Task<Event> GetEvents()
         {
-            string json = await GetJson();
+            var queryBuilder = new StringBuilder();
 
-            Utils.ValidatateResponseString(json);
+            queryBuilder.Append($"{eventUrl}?{timespan}");
+            
+            AppendQueryParameters(queryBuilder);
 
-            return Event.FromJson(json);
+            return await new TelemetryClient().GetEvent(queryBuilder.ToString(), appId, apiKey);
+        }
+
+        /// <summary>
+        /// Appends the query parameters.
+        /// </summary>
+        /// <param name="queryBuilder">The query builder.</param>
+        private void AppendQueryParameters(StringBuilder queryBuilder)
+        {
+            // append '$top' numebert to select
+            if (!string.IsNullOrEmpty(top))
+            {
+                queryBuilder.Append($"&{top}");
+            }
         }
     }
 }

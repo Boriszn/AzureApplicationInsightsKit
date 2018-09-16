@@ -1,24 +1,20 @@
-using Xunit;
 using AzureApplicationInsightsKit.Clients;
 using AzureApplicationInsightsKit.Models;
 using FluentAssertions;
+using Xunit;
 
-namespace AzureApplicationInsightsKit.UnitTests
+namespace AzureApplicationInsightsKit.UnitTests.IntergrationTests
 {
     public class EventClientTests
     {
         [Fact]
         public async void GetAllEvents_WithTopFive_RetrunEvent()
         {
-            // Arrange 
-            const string AppId = "";
-            const string ApiKey = "";
-
-            // Act
-            Event eventsData = await new EventsClient(AppId, ApiKey)
+            // Arrange and Act
+            Event eventsData = await new EventsClient(Constants.AppId, Constants.ApiKey)
                     .WithAll()
                     .WithTop(5)
-                    .Get();
+                    .GetEvents();
 
             // Assert
             eventsData.Should().NotBeNull();

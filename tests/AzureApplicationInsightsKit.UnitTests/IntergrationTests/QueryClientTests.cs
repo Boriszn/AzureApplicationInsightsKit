@@ -1,9 +1,9 @@
-using Xunit;
 using AzureApplicationInsightsKit.Clients;
 using AzureApplicationInsightsKit.Models;
 using FluentAssertions;
+using Xunit;
 
-namespace AzureApplicationInsightsKit.UnitTests
+namespace AzureApplicationInsightsKit.UnitTests.IntergrationTests
 {
     public class QueryClientTests
     {

@@ -32,15 +32,9 @@ namespace AzureApplicationInsightsKit.Clients
         EventsClient WithTop(int top);
 
         /// <summary>
-        /// Gets the json.
-        /// </summary>
-        /// <returns></returns>
-        Task<string> GetJson();
-
-        /// <summary>
         /// Gets this instance.
         /// </summary>
         /// <returns></returns>
-        Task<Event> Get();
+        Task<Event> GetEvents();
     }
 }

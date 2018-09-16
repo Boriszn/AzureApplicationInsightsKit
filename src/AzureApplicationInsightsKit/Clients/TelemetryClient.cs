@@ -86,5 +86,21 @@ namespace AzureApplicationInsightsKit.Clients
 
             return Query.FromJson(json);
         }
+
+        /// <summary>
+        /// Gets the event.
+        /// </summary>
+        /// <param name="query">The query.</param>
+        /// <param name="appId">The application identifier.</param>
+        /// <param name="apiKey">The API key.</param>
+        /// <returns></returns>
+        public async Task<Event> GetEvent(string query, string appId, string apiKey)
+        {
+            string json = await new TelemetryClient().GetJson(query, appId, apiKey);
+
+            Utils.ValidatateResponseString(json);
+
+            return Event.FromJson(json);
+        }
     }
 }

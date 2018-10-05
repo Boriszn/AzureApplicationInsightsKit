@@ -2,6 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Boris Zaikin</Authors>
+    <Product>Azure ApplicationInsights Kit</Product>
+    <Copyright>Copyright (c) Boris Zaikin</Copyright>
+    <Description>Library (SDK) provides capabilities to retrieve and query Metrics, Events data from Azure Application Insights.</Description>
+    <PackageProjectUrl>https://github.com/Boriszn/AzureApplicationInsightsKit</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/Boriszn/AzureApplicationInsightsKit/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/Boriszn/AzureApplicationInsightsKit</RepositoryUrl>
+    <RepositoryType>GIT</RepositoryType>
+    <PackageTags>azure, azure-application-insights , dot-net-core, app-insights, sdk, csharp</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>

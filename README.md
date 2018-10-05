@@ -1,5 +1,7 @@
 # ![App Insights Icon](https://raw.githubusercontent.com/Boriszn/AzureApplicationInsightsKit/develop/assets/img/application-insights-logo.png "App Insights")  Azure application insights kit
 
+[![NuGet Downloads](https://img.shields.io/nuget/v/AzureApplicationInsightsKit.svg)](https://www.nuget.org/packages/AzureApplicationInsightsKit/)
+
 Library (SDK) provides capabilities  to retrieve and query Metrics, Events data from Azure Application Insights.
 
 ## Capabilities

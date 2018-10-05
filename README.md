@@ -14,7 +14,10 @@ Library (SDK) provides capabilities  to retrieve and query Metrics, Events data 
 
 ## Installation
 
-1. To enable Azure App Insights API support for your Azure resource follow the [documentation Here.](https://dev.applicationinsights.io/quickstart)
+1. To enable Azure App Insights API support for your Azure resource follow the [documentation Here.]
+(https://dev.applicationinsights.io/quickstart)
+![App Insights Icon](https://raw.githubusercontent.com/Boriszn/AzureApplicationInsightsKit/master/assets/img/api-access.png "App Insights")
+
 2. Clone repository
 3. Run UnitTests / Integration tests
 4. Build / Run.

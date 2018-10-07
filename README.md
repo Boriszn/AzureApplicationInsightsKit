@@ -1,4 +1,4 @@
-# ![App Insights Icon](https://raw.githubusercontent.com/Boriszn/AzureApplicationInsightsKit/develop/assets/img/application-insights-logo.png "App Insights")  Azure application insights kit
+# ![App Insights Icon](https://raw.githubusercontent.com/Boriszn/AzureApplicationInsightsKit/develop/assets/img/appinskit-logo-header.jpg "Azure Application Insights Kit")
 
 [![NuGet Downloads](https://img.shields.io/nuget/v/AzureApplicationInsightsKit.svg)](https://www.nuget.org/packages/AzureApplicationInsightsKit/)
 

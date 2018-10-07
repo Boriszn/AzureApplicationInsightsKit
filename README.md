@@ -1,6 +1,6 @@
 # ![App Insights Icon](https://raw.githubusercontent.com/Boriszn/AzureApplicationInsightsKit/develop/assets/img/appinskit-logo-header-v2.jpg "Azure Application Insights Kit")
 
-[![NuGet Downloads](https://img.shields.io/nuget/v/AzureApplicationInsightsKit.svg)](https://www.nuget.org/packages/AzureApplicationInsightsKit/)
+[![NuGet Downloads](https://img.shields.io/nuget/v/AzureApplicationInsightsKit.svg)](https://www.nuget.org/packages/AzureApplicationInsightsKit/) [![Build status](https://ci.appveyor.com/api/projects/status/ls8osc1f62e0k3p1?svg=true)](https://ci.appveyor.com/project/Boriszn/azureapplicationinsightskit)
 
 Library (SDK) provides capabilities  to retrieve and query Metrics, Events data from Azure Application Insights.
 

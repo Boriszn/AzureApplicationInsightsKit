@@ -12,6 +12,7 @@
     <RepositoryUrl>https://github.com/Boriszn/AzureApplicationInsightsKit</RepositoryUrl>
     <RepositoryType>GIT</RepositoryType>
     <PackageTags>azure, azure-application-insights , dot-net-core, app-insights, sdk, csharp</PackageTags>
+    <PackageIconUrl>https://raw.githubusercontent.com/Boriszn/AzureApplicationInsightsKit/develop/assets/img/logo.jpg</PackageIconUrl>
   </PropertyGroup>
 
   <ItemGroup>

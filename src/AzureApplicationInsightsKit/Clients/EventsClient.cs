@@ -55,6 +55,66 @@ namespace AzureApplicationInsightsKit.Clients
         }
 
         /// <summary>
+        /// Withes the requests.
+        /// </summary>
+        /// <returns></returns>
+        public EventsClient WithRequests()
+        {
+            eventUrl = $"{EventEntityKey}/requests";
+            return this;
+        }
+
+        /// <summary>
+        /// With the page views.
+        /// </summary>
+        /// <returns></returns>
+        public EventsClient WithPageViews()
+        {
+            eventUrl = $"{EventEntityKey}/pageViews";
+            return this;
+        }
+
+        /// <summary>
+        /// With the exceptions.
+        /// </summary>
+        /// <returns></returns>
+        public EventsClient WithExceptions()
+        {
+            eventUrl = $"{EventEntityKey}/exceptions";
+            return this;
+        }
+
+        /// <summary>
+        /// With the dependencies.
+        /// </summary>
+        /// <returns></returns>
+        public EventsClient WithDependencies()
+        {
+            eventUrl = $"{EventEntityKey}/dependencies";
+            return this;
+        }
+
+        /// <summary>
+        /// With the custom events.
+        /// </summary>
+        /// <returns></returns>
+        public EventsClient WithCustomEvents()
+        {
+            eventUrl = $"{EventEntityKey}/customEvents";
+            return this;
+        }
+
+        /// <summary>
+        /// With the availability results.
+        /// </summary>
+        /// <returns></returns>
+        public EventsClient WithAvailabilityResults()
+        {
+            eventUrl = $"{EventEntityKey}/availabilityResults";
+            return this;
+        }
+
+        /// <summary>
         /// With the last one day time span.
         /// </summary>
         /// <returns></returns>

@@ -26,7 +26,7 @@ namespace AzureApplicationInsightsKit.Clients
         /// <param name="requestUrl">The request URL.</param>
         /// <param name="apikey">The apikey.</param>
         /// <returns></returns>
-        public static async Task<string> GetTelemetry(string requestUrl, string apikey)
+        private static async Task<string> GetTelemetry(string requestUrl, string apikey)
         {
             using (var httpClient = new HttpClient())
             {

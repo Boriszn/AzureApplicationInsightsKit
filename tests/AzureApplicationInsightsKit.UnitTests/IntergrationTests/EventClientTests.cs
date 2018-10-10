@@ -21,12 +21,64 @@ namespace AzureApplicationInsightsKit.UnitTests.IntergrationTests
         }
 
         [Fact]
-        public async void GetAllEventsRequestTracking_WithTopFive_RetrunEvent()
+        public async void GetEventsRequestTracking_WithTopFive_RetrunEvent()
         {
             // Arrange and Act
             Event eventsData = await new EventsClient(Constants.AppId, Constants.ApiKey)
                 .WithRequests()
                 .WithTop(5)
+                .GetEvents();
+
+            // Assert
+            eventsData.Should().NotBeNull();
+        }
+
+        [Fact]
+        public async void GetPageViews_WithTop15_RetrunEvent()
+        {
+            // Arrange and Act
+            Event eventsData = await new EventsClient(Constants.AppId, Constants.ApiKey)
+                .WithPageViews()
+                .WithTop(5)
+                .GetEvents();
+
+            // Assert
+            eventsData.Should().NotBeNull();
+        }
+
+        [Fact]
+        public async void GetExceptions_WithTop15_RetrunEvent()
+        {
+            // Arrange and Act
+            Event eventsData = await new EventsClient(Constants.AppId, Constants.ApiKey)
+                .WithExceptions()
+                .WithTop(15)
+                .GetEvents();
+
+            // Assert
+            eventsData.Should().NotBeNull();
+        }
+
+        [Fact]
+        public async void GetDependencies_WithTop15_RetrunEvent()
+        {
+            // Arrange and Act
+            Event eventsData = await new EventsClient(Constants.AppId, Constants.ApiKey)
+                .WithDependencies()
+                .WithTop(15)
+                .GetEvents();
+
+            // Assert
+            eventsData.Should().NotBeNull();
+        }
+
+        [Fact]
+        public async void GetTraces_WithTop15_RetrunEvent()
+        {
+            // Arrange and Act
+            Event eventsData = await new EventsClient(Constants.AppId, Constants.ApiKey)
+                .WithTraces()
+                .WithTop(15)
                 .GetEvents();
 
             // Assert

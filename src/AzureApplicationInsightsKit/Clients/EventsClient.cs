@@ -1,14 +1,13 @@
-using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
-using AzureApplicationInsightsKit.Builders;
 using AzureApplicationInsightsKit.Models;
 using TimeSpan = AzureApplicationInsightsKit.Models.TimeSpan;
 
 namespace AzureApplicationInsightsKit.Clients
 {
     /// <summary>
-    /// Client for gather Events 
+    /// Client for gather Events from 
+    /// https://dev.applicationinsights.io/documentation/Using-the-API/Events
     /// </summary>
     public class EventsClient : IEventsClient
     {
@@ -18,7 +17,11 @@ namespace AzureApplicationInsightsKit.Clients
 
         private readonly string appId;
         private readonly string apiKey;
-        
+        private string count;
+        private string skip;
+        private string filter;
+        private string select;
+        private string search;
 
         private const string EventEntityKey = "events";
 
@@ -41,6 +44,7 @@ namespace AzureApplicationInsightsKit.Clients
         /// <returns></returns>
         public EventsClient WithAll()
         {
+            eventUrl = string.Empty;
             eventUrl = $"{EventEntityKey}/$all";
             return this;
         }
@@ -51,6 +55,7 @@ namespace AzureApplicationInsightsKit.Clients
         /// <returns></returns>
         public EventsClient WithTraces()
         {
+            eventUrl = string.Empty;
             eventUrl = $"{EventEntityKey}/traces";
             return this;
         }
@@ -61,6 +66,7 @@ namespace AzureApplicationInsightsKit.Clients
         /// <returns></returns>
         public EventsClient WithRequests()
         {
+            eventUrl = string.Empty;
             eventUrl = $"{EventEntityKey}/requests";
             return this;
         }
@@ -71,6 +77,7 @@ namespace AzureApplicationInsightsKit.Clients
         /// <returns></returns>
         public EventsClient WithPageViews()
         {
+            eventUrl = string.Empty;
             eventUrl = $"{EventEntityKey}/pageViews";
             return this;
         }
@@ -81,6 +88,7 @@ namespace AzureApplicationInsightsKit.Clients
         /// <returns></returns>
         public EventsClient WithExceptions()
         {
+            eventUrl = string.Empty;
             eventUrl = $"{EventEntityKey}/exceptions";
             return this;
         }
@@ -91,6 +99,7 @@ namespace AzureApplicationInsightsKit.Clients
         /// <returns></returns>
         public EventsClient WithDependencies()
         {
+            eventUrl = string.Empty;
             eventUrl = $"{EventEntityKey}/dependencies";
             return this;
         }
@@ -101,6 +110,7 @@ namespace AzureApplicationInsightsKit.Clients
         /// <returns></returns>
         public EventsClient WithCustomEvents()
         {
+            eventUrl = string.Empty;
             eventUrl = $"{EventEntityKey}/customEvents";
             return this;
         }
@@ -111,6 +121,7 @@ namespace AzureApplicationInsightsKit.Clients
         /// <returns></returns>
         public EventsClient WithAvailabilityResults()
         {
+            eventUrl = string.Empty;
             eventUrl = $"{EventEntityKey}/availabilityResults";
             return this;
         }
@@ -126,13 +137,73 @@ namespace AzureApplicationInsightsKit.Clients
         }
 
         /// <summary>
-        /// Withes the top.
+        /// With the top.
         /// </summary>
         /// <param name="selectTop">The Top numbers off selected items.</param>
         /// <returns></returns>
         public EventsClient WithTop(int selectTop)
         {
             this.top = $"$top={selectTop}";
+            return this;
+        }
+
+        /// <summary>
+        /// With Count
+        /// </summary>
+        /// <param name="selectCount"></param>
+        /// <returns></returns>
+        public EventsClient WithCount(int selectCount)
+        {
+            this.count = string.Empty;
+            this.count = $"$count={selectCount}";
+            return this;
+        }
+
+        /// <summary>
+        /// With Skip
+        /// </summary>
+        /// <param name="selectSkip"></param>
+        /// <returns></returns>
+        public EventsClient WithSkip(int selectSkip)
+        {
+            this.skip = string.Empty;
+            this.skip = $"$skip={selectSkip}";
+            return this;
+        }
+
+        /// <summary>
+        /// With Filter 
+        /// </summary>
+        /// <param name="selectFilter"></param>
+        /// <returns></returns>
+        public EventsClient WithFilter(string selectFilter)
+        {
+            this.filter = string.Empty;
+            this.filter = $"$filter={selectFilter}";
+            return this;
+        }
+
+        /// <summary>
+        /// With Select
+        /// </summary>
+        /// <param name="inSelect">The select</param>
+        /// <returns></returns>
+        public EventsClient WithSelect(string inSelect)
+        {
+            this.select = string.Empty;
+            this.select = $"$select={inSelect}";
+            return this;
+        }
+
+        /// <summary>
+        /// With Search
+        /// </summary>
+        /// <param name="selectSearch">The select search</param>
+        /// <returns></returns>
+        public EventsClient WithSearch(string selectSearch)
+        {
+            this.search = string.Empty;
+            this.search = $"$search={selectSearch}";
             return this;
         }
 
@@ -157,10 +228,35 @@ namespace AzureApplicationInsightsKit.Clients
         /// <param name="queryBuilder">The query builder.</param>
         private void AppendQueryParameters(StringBuilder queryBuilder)
         {
-            // append '$top' numebert to select
+            // append '$top' number to select
             if (!string.IsNullOrEmpty(top))
             {
                 queryBuilder.Append($"&{top}");
+            }
+
+            if (!string.IsNullOrEmpty(count))
+            {
+                queryBuilder.Append($"&{count}");
+            }
+
+            if (!string.IsNullOrEmpty(filter))
+            {
+                queryBuilder.Append($"&{filter}");
+            }
+
+            if (!string.IsNullOrEmpty(skip))
+            {
+                queryBuilder.Append($"&{skip}");
+            }
+
+            if (!string.IsNullOrEmpty(select))
+            {
+                queryBuilder.Append($"&{select}");
+            }
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                queryBuilder.Append($"&{search}");
             }
         }
     }

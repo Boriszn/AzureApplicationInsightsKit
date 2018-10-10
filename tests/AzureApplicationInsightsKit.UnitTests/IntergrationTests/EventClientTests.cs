@@ -21,6 +21,20 @@ namespace AzureApplicationInsightsKit.UnitTests.IntergrationTests
         }
 
         [Fact]
+        public async void GetAllEvents_WithTopFiveSkipOne_RetrunEvent()
+        {
+            // Arrange and Act
+            Event eventsData = await new EventsClient(Constants.AppId, Constants.ApiKey)
+                .WithAll()
+                .WithTop(5)
+                .WithSkip(1)
+                .GetEvents();
+
+            // Assert
+            eventsData.Should().NotBeNull();
+        }
+
+        [Fact]
         public async void GetEventsRequestTracking_WithTopFive_RetrunEvent()
         {
             // Arrange and Act

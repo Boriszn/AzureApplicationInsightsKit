@@ -7,7 +7,7 @@ using AzureApplicationInsightsKit.Models;
 namespace AzureApplicationInsightsKit.Clients
 {
     /// <summary>
-    /// Http clinent which make calls to Aplication insights API
+    /// Http client which make calls to Application insights API
     /// </summary>
     internal class TelemetryClient
     {
@@ -18,25 +18,6 @@ namespace AzureApplicationInsightsKit.Clients
         public TelemetryClient()
         {
             baseUrlBuilder = new BaseUrlBuilder();
-        }
-
-        /// <summary>
-        /// Gets the telemetry.
-        /// </summary>
-        /// <param name="requestUrl">The request URL.</param>
-        /// <param name="apikey">The apikey.</param>
-        /// <returns></returns>
-        public static async Task<string> GetTelemetry(string requestUrl, string apikey)
-        {
-            using (var httpClient = new HttpClient())
-            {
-                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(JsonMediaType));
-                httpClient.DefaultRequestHeaders.Add(ApiKeyHeader, apikey);
-
-                var response = await httpClient.GetAsync(requestUrl);
-
-                return response.IsSuccessStatusCode ? response.Content.ReadAsStringAsync().Result : response.ReasonPhrase;
-            }
         }
 
         /// <summary>
@@ -101,6 +82,25 @@ namespace AzureApplicationInsightsKit.Clients
             Utils.ValidatateResponseString(json);
 
             return Event.FromJson(json);
+        }
+
+        /// <summary>
+        /// Gets the telemetry.
+        /// </summary>
+        /// <param name="requestUrl">The request URL.</param>
+        /// <param name="apikey">The apikey.</param>
+        /// <returns></returns>
+        private static async Task<string> GetTelemetry(string requestUrl, string apikey)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(JsonMediaType));
+                httpClient.DefaultRequestHeaders.Add(ApiKeyHeader, apikey);
+
+                var response = await httpClient.GetAsync(requestUrl);
+
+                return response.IsSuccessStatusCode ? response.Content.ReadAsStringAsync().Result : response.ReasonPhrase;
+            }
         }
     }
 }
